@@ -6,7 +6,7 @@ import { ILayoutFileDTO } from '../interface/ILayoutFile'
 export default class LayoutService{
 
     async getColumns(provider:String){
-       return layoutFileModel.findOne({ provider:provider})        
+       return layoutFileModel.findOne({ provider:provider})
     }
     
     async create(layout : ILayoutFileDTO){

@@ -5,7 +5,7 @@ import { IVehicleDTO } from '../interface/IVehicle';
 @Service()
 export default class VehicleService{
 
-    async save(vehicles : IVehicleDTO[]){
+    async save(vehicles : IVehicleDTO){
 
         vehicleModel.create(vehicles)
     }

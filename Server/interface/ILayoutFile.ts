@@ -5,8 +5,8 @@ import { Document, Model } from 'mongoose'
 //it might be used to include custom instance methods
 export interface ILayoutFileDocument extends Document{
 
-    provider:String
-    columns: Array<String>
+    provider:string
+    columns: Array<string>
 }
 
 //DTO interface , enforce all members at declaring a new instance of the type

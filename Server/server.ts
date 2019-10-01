@@ -1,6 +1,7 @@
 import express from 'express'
 import config from 'config'
 import loader from './loader'    
+import d from 'reflect-metadata'
 
 const server = express()
 const port = config.get('port') // getting the port from default.json

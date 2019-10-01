@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,39 +41,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var multer_1 = __importDefault(require("multer"));
-var upload_1 = __importDefault(require("../../service/upload"));
 var typedi_1 = require("typedi");
-//const uploadServiceInstance = new uploadService()
-var upload = multer_1.default({ dest: 'upload/' });
-var routePaths = express_1.Router().get('/', function (req, resp) {
-    //TODO Retrieve all vehicles by provider
-}).post('/', upload.single('file'), function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
-    var service, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                service = typedi_1.Container.get(upload_1.default);
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, service.upload(req.file.path, req.body.provider)];
-            case 2:
-                _a.sent();
-                resp.send('successfully Uploaded');
-                return [3 /*break*/, 4];
-            case 3:
-                error_1 = _a.sent();
-                console.log('bad request' + error_1);
-                resp.send(error_1);
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
-    });
-}); });
-exports.default = express_1.Router().use('/', routePaths);
+var vehicle_1 = require("../model/vehicle");
+var VehicleService = /** @class */ (function () {
+    function VehicleService() {
+    }
+    VehicleService.prototype.save = function (vehicles) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                vehicle_1.vehicleModel.create(vehicles);
+                return [2 /*return*/];
+            });
+        });
+    };
+    VehicleService = __decorate([
+        typedi_1.Service()
+    ], VehicleService);
+    return VehicleService;
+}());
+exports.default = VehicleService;
